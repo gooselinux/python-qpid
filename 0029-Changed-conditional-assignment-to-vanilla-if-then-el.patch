@@ -1,0 +1,36 @@
+From 688688c265d541a47aade8f4290af064a47ef286 Mon Sep 17 00:00:00 2001
+From: Jonathan Robie <jonathan@apache.org>
+Date: Mon, 9 Aug 2010 16:34:04 +0000
+Subject: [PATCH 29/30] Changed conditional assignment to vanilla if/then/else, for compatibility with older Python.
+
+git-svn-id: https://svn.apache.org/repos/asf/qpid/trunk@983718 13f79535-47bb-0310-9956-ffa450edef68
+(cherry picked from commit 4b67ae91be27048aca8ded77b1089dd0487eff03)
+---
+ qpid/python/examples/api/hello |   11 +++++++++--
+ 1 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/qpid/python/examples/api/hello b/qpid/python/examples/api/hello
+index 4644189..a220fe7 100755
+--- a/qpid/python/examples/api/hello
++++ b/qpid/python/examples/api/hello
+@@ -21,8 +21,15 @@
+ import sys
+ from qpid.messaging import *
+ 
+-broker =  "localhost:5672" if len(sys.argv)<2 else sys.argv[1]
+-address = "amq.topic" if len(sys.argv)<3 else sys.argv[2]
++if len(sys.argv)<2:
++  broker =  "localhost:5672" 
++else:
++  broker = sys.argv[1]
++
++if len(sys.argv)<3: 
++  address = "amq.topic" 
++else:
++  address = sys.argv[2]
+ 
+ connection = Connection(broker)
+ 
+-- 
+1.7.2
+

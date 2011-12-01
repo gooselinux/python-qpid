@@ -1,0 +1,39 @@
+From 1ca7496b9db44598aabf63c729e8dde926805a81 Mon Sep 17 00:00:00 2001
+From: Jonathan Robie <jonathan@apache.org>
+Date: Mon, 9 Aug 2010 17:31:40 +0000
+Subject: [PATCH 30/30] Removed finally - Python before 2.5 did not allow finally together with specific exceptions.
+
+git-svn-id: https://svn.apache.org/repos/asf/qpid/trunk@983743 13f79535-47bb-0310-9956-ffa450edef68
+(cherry picked from commit e3bc2893e6a3fae16079ba7bdcb034f3026fee76)
+---
+ qpid/python/examples/api/hello     |    4 ++--
+ qpid/python/examples/api/hello_xml |    4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/qpid/python/examples/api/hello b/qpid/python/examples/api/hello
+index a220fe7..ad314da 100755
+--- a/qpid/python/examples/api/hello
++++ b/qpid/python/examples/api/hello
+@@ -48,5 +48,5 @@ try:
+ 
+ except MessagingError,m:
+   print m
+-finally:
+-  connection.close()
++
++connection.close()
+diff --git a/qpid/python/examples/api/hello_xml b/qpid/python/examples/api/hello_xml
+index 07c2b13..ab567ec 100755
+--- a/qpid/python/examples/api/hello_xml
++++ b/qpid/python/examples/api/hello_xml
+@@ -73,5 +73,5 @@ try:
+ 
+ except MessagingError,m:
+   print m
+-finally:
+-  connection.close()
++
++connection.close()
+-- 
+1.7.2
+
